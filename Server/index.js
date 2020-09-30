@@ -1,34 +1,51 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const cors = require('cors');
-const mongoose = require('mongoose');
-const dotenv = require('dotenv');
+const cors = require("cors");
+const exp = require("express");
+const bp = require("body-parser");
+const passport = require("passport");
+const { connect } = require("mongoose");
+const { success, error } = require("consola");
 
-const app = express();
+// Bring in the app constants
+const { DB, PORT } = require("./config");
 
+// Initialize the application
+const app = exp();
 
-// Middleware
-app.use(bodyParser.json());
+// Middlewares
 app.use(cors());
+app.use(bp.json());
+app.use(passport.initialize());
 
-// Connect to Database
-dotenv.config();
-mongoose.connect(
-  process.env.DB_CONNECT,
-  { useNewUrlParser: true },
-  () => console.log('Connected to Database'),
-);
+require("./middlewares/passport")(passport);
 
+// User Router Middleware
+app.use("/api/users", require("./routes/users"));
 
-// Import Routes
-const user_auth_route = require('./routes/user_auth');
+const startApp = async () => {
+  try {
+    // Connection With DB
+    await connect(DB, {
+      useFindAndModify: true,
+      useUnifiedTopology: true,
+      useNewUrlParser: true
+    });
 
-// Route Middlewares
-app.use('/api/user', user_auth_route);
+    success({
+      message: `Successfully connected with the Database`,
+      badge: true
+    });
 
+    // Start Listenting for the server on PORT
+    app.listen(PORT, () =>
+      success({ message: `Server started on PORT ${PORT}`, badge: true })
+    );
+  } catch (err) {
+    error({
+      message: `Unable to connect with Database \n${err}`,
+      badge: true
+    });
+    startApp();
+  }
+};
 
-
-
-// How to we start listening to the server
-const port = process.env.PORT || 3000;
-app.listen(port, () => console.log(`Server is running on port ${port}`));
+startApp();
