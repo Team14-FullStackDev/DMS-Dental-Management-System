@@ -17,7 +17,7 @@
                   :class="type === 'dark' ? 'table-dark': ''"
                   :thead-classes="type === 'dark' ? 'thead-dark': 'thead-light'"
                   tbody-classes="list"
-                  :data="tableData">
+                  :data="patient">
         <template slot="columns">
           <th>Basic info</th>
           <th>Phone number</th>
@@ -31,25 +31,26 @@
           <th scope="row">
             <div class="media align-items-center">
               <a href="#" class="avatar rounded-circle mr-3">
-                <img alt="Image placeholder" :src="row.img">
+                <!-- <img alt="Image placeholder" :src="row."> -->
               </a>
               <div class="media-body">
-                <a class="name mb-0 text-sm" href="#/patientinfo">{{row.title}}</a>
+                <router-link :to="{name: 'patient-info', params: {id: row._id}}" class="name mb-0 text-sm" href="#/patientinfo">{{row.patient_name}}</router-link>
               </div>
             </div>
           </th>
           <td class="budget">
-            {{row.budget}}
+            {{row.phone_number}}
           </td>
           <td>
-            {{row.status}}
+            NaN
           </td>
           <td>
-            {{row.lastappointment}}
+            <!-- {{row.lastappointment}} -->
+            NaN
           </td>
 
           <td>
-            {{row.status}}
+            {{ row.createdAt | formatDate }}
           </td>
 
           <td class="text-right">
@@ -60,9 +61,8 @@
               </a>
 
               <template>
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <a class="dropdown-item" href="#">Something else here</a>
+                <a class="dropdown-item" type="danger" @click="deletePatient(row._id)" style="color: red">Delete Patient</a>
+                
               </template>
             </base-dropdown>
           </td>
@@ -80,6 +80,9 @@
   </div>
 </template>
 <script>
+import { api } from '@/helpers/helpers';
+import moment from 'moment'
+
   export default {
     name: 'projects-table',
     props: {
@@ -90,49 +93,69 @@
     },
     data() {
       return {
-        tableData: [
-          {
-            img: 'img/theme/bootstrap.jpg',
-            title: 'Pich Sokmeng',
-            budget: '012 123 123',
-            status: 'DD/MM/YYYY',
-            lastappointment: 'DD/MM/YYYY',
-            completion: 60
-          },
-          {
-            img: 'img/theme/angular.jpg',
-            title: 'Pong Channy',
-            budget: '012 123 123',
-            status: 'DD/MM/YYYY',
-            lastappointment: 'DD/MM/YYYY',
-            completion: 100
-          },
-          {
-            img: 'img/theme/sketch.jpg',
-            title: 'Sann Chamrouen',
-            budget: '012 123 123',
-            status: 'DD/MM/YYYY',
-            lastappointment: 'DD/MM/YYYY',
-            completion: 72
-          },
-          {
-            img: 'img/theme/react.jpg',
-            title: 'Kaing Sokheng',
-            budget: '012 123 123',
-            status: 'DD/MM/YYYY',
-            lastappointment: 'DD/MM/YYYY',
-            completion: 90
-          },
-          {
-            img: 'img/theme/vue.jpg',
-            title: 'Daro Dayla',
-            budget: '012 123 123',
-            status: 'DD/MM/YYYY',
-            lastappointment: 'DD/MM/YYYY',
-            completion: 100
-          }
-        ]
+        patient: [],
+        // tableData: [
+        //   {
+        //     img: 'img/theme/bootstrap.jpg',
+        //     title: 'Pich Sokmeng',
+        //     budget: '012 123 123',
+        //     status: 'DD/MM/YYYY',
+        //     lastappointment: 'DD/MM/YYYY',
+        //     completion: 60
+        //   },
+        //   {
+        //     img: 'img/theme/angular.jpg',
+        //     title: 'Pong Channy',
+        //     budget: '012 123 123',
+        //     status: 'DD/MM/YYYY',
+        //     lastappointment: 'DD/MM/YYYY',
+        //     completion: 100
+        //   },
+        //   {
+        //     img: 'img/theme/sketch.jpg',
+        //     title: 'Sann Chamrouen',
+        //     budget: '012 123 123',
+        //     status: 'DD/MM/YYYY',
+        //     lastappointment: 'DD/MM/YYYY',
+        //     completion: 72
+        //   },
+        //   {
+        //     img: 'img/theme/react.jpg',
+        //     title: 'Kaing Sokheng',
+        //     budget: '012 123 123',
+        //     status: 'DD/MM/YYYY',
+        //     lastappointment: 'DD/MM/YYYY',
+        //     completion: 90
+        //   },
+        //   {
+        //     img: 'img/theme/vue.jpg',
+        //     title: 'Daro Dayla',
+        //     budget: '012 123 123',
+        //     status: 'DD/MM/YYYY',
+        //     lastappointment: 'DD/MM/YYYY',
+        //     completion: 100
+        //   }
+        // ]
       }
+    },
+    methods: {
+      async deletePatient(id) {
+      const sure = window.confirm('Are you sure?');
+      if (!sure) return;
+      await api.deletepatient(id);
+      this.flash('task deleted sucessfully!', 'success');
+      const newpatient = this.patient.filter(patient => patient._id !== id);
+      this.patient = newpatient;
+    }
+    },
+    async mounted() {
+      this.patient = await api.getpatients();
+      console.log(this.patient);
+    },
+    filters: {
+        formatDate(date){
+            return moment(String(date)).format('DD/MM/YYYY')
+        }
     }
   }
 </script>

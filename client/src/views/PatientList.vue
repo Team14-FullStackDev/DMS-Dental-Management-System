@@ -6,10 +6,10 @@
             <span class="mask bg-gradient-info opacity-8"></span>
             <!-- Header container -->
             <div class="container-fluid align-items-center">
-                <div class="row">
+                <!-- <div class="row">
                     <div class="col-sm-1">76 Patients</div>
                     <div class="col">Sort By</div>
-                </div>
+                </div> -->
             </div>
         </base-header>
 

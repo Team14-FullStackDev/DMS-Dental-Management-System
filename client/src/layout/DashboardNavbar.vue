@@ -14,18 +14,17 @@
             </div>
         </form>   
         <div class="col-mb">
-          
-          <post-record></post-record>
+          <post-patient></post-patient>
           </div>
     </base-nav>
 </template>
 <script>
 
-import PostRecord from '@/components/PostRecord.vue';
+import PostPatient from '@/components/PatientInfo/PostPatient'
 
 export default {
     components: {
-      PostRecord
+    PostPatient
     },
     data() {
       return {

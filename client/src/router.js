@@ -1,8 +1,9 @@
 import Vue from 'vue'
-import Router from 'vue-router'
+import Router from 'vue-router';
 import DashboardLayout from '@/layout/DashboardLayout'
 import AuthLayout from '@/layout/AuthLayout'
-Vue.use(Router)
+
+Vue.use(Router);
 
 export default new Router({
   linkExactActiveClass: 'active',
@@ -32,7 +33,7 @@ export default new Router({
         },
         {
           path: '/payment-info',
-          name: 'payment information',
+          name: 'paymentinformation',
           component: () => import(/* webpackChunkName: "demo" */ './views/PaymentInfo.vue')
         },
         {
@@ -41,10 +42,11 @@ export default new Router({
           component: () => import(/* webpackChunkName: "demo" */ './views/Tables.vue')
         },
         {
-          path: '/patientinfo',
-          name: 'patientinfo',
-          component: () => import(/* webpackChunkName: "demo" */ './views/PatientList/PatientInfo.vue')
-        }
+          path: '/patient-list/:id/info',
+          name: 'patient-info',
+          component: () => import(/* webpackChunkName: "demo" */ './views/PatientList/PatientInfo.vue'),
+          props: true
+        },
       ]
     },
     {
@@ -63,6 +65,21 @@ export default new Router({
           component: () => import(/* webpackChunkName: "demo" */ './views/Register.vue')
         }
       ]
+    },
+    {    
+      path: '/',
+        redirect: '/patients'
+      }, 
+      {
+        path: '/patients/AddPatient',
+        name: 'post-patient',
+        component: () => import(/* webpackChunkName: "demo" */ './components/PatientInfo/AddPatient.vue')
+      },
+      {
+        path: '/patients/:id/EditPatient',
+        name: 'EditPatient',
+        component: () => import(/* webpackChunkName: "demo" */ './views/PatientList/EditPatient.vue')
+      }
+    ]
     }
-  ]
-})
+);
