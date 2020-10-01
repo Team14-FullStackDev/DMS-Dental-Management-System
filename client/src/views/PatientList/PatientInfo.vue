@@ -14,14 +14,14 @@
                             <div class="col-lg-3 order-lg-2">
                                 <div class="card-profile-image">
                                     <a href="#">
-                                        <img src="img/theme/team-4-800x800.jpg" class="rounded-circle">
+                                        <img src="img/theme/team-3-800x800.jpg" class="rounded-circle">
                                     </a>
                                 </div>
                             </div>
                         </div>
                         <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
                             <div class=" justify-content-between">
-                                <base-button size="sm" type="default" class="float-right">Edit Patient</base-button>
+                                <base-button size="sm" type="default" class="float-right" @click="editPatient">Edit Patient</base-button>
                             </div>
                         </div>
                         <div class="card-body pt-0 pt-md-4 mt-5">
@@ -29,10 +29,10 @@
                                 <div class="col">
                                     <div class="text-center">
                                         <h3>
-                                            Jessica Jones<span class="font-weight-light">, 27</span>
+                                            {{patient.patient_name}}<span class="font-weight-light">, 27</span>
                                         </h3>
                                         <div class="h5 font-weight-300">
-                                            <i class="ni location_pin mr-2"></i>jessicaj@gmail.com
+                                            <i class="ni location_pin mr-2"></i>{{patient.email}}
                                         </div>
                                     
                                     </div>
@@ -66,38 +66,38 @@
                                 <div class="col ">
                                     <div class="text-center">
                                         <h4>Gender</h4>
-                                        <div class="h5 font-weight-300">Male</div>
+                                        <div class="h5 font-weight-300">{{patient.gender}}</div>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="text-center">
                                         <h4>Birthday</h4>
-                                        <div class="h5 font-weight-300">Male</div>
+                                        <div class="h5 font-weight-300">{{patient.birthday}}</div>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="text-center">
                                         <h4>Phone Number</h4>
-                                        <div class="h5 font-weight-300">Male</div>
+                                        <div class="h5 font-weight-300">{{patient.phone_number}}</div>
                                     </div>
                                 </div>
                                 <div class="w-100"> <hr> </div>
                                 <div class="col">
                                     <div class="text-center">
                                         <h4>Street Address</h4>
-                                        <div class="h5 font-weight-300">Male</div>
+                                        <div class="h5 font-weight-300">{{patient.address}}</div>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="text-center">
                                         <h4>City</h4>
-                                        <div class="h5 font-weight-300">Male</div>
+                                        <div class="h5 font-weight-300">{{patient.city}}</div>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="text-center">
                                         <h4>Zip Code</h4>
-                                        <div class="h5 font-weight-300">Male</div>
+                                        <div class="h5 font-weight-300">{{patient.zipcode}}</div>
                                     </div>
                                 </div>
                                 
@@ -106,7 +106,7 @@
                                 <div class="col-sm-4">
                                     <div class="text-center">
                                         <h4>Register date</h4>
-                                        <div class="h5 font-weight-300">Male</div>
+                                        <div class="h5 font-weight-300">{{patient.createdAt | formatDate}}</div>
                                     </div>
                                 </div>
                                 <div class="w-100 mt-6"></div>
@@ -134,7 +134,7 @@
                                                     v-focus
                                                 >
                                                 <div v-else>
-                                                    <label @click="note.edit = true;"> {{note.text}} </label>
+                                                    <label @dblclick="note.edit = true;"> {{note.text}} </label>
                                                 </div>
                                                 
                                             </li>
@@ -210,33 +210,37 @@
 </template>
 
 <script>
+import { api } from '@/helpers/helpers';
+import moment from 'moment'
 
 export default {
     data() {
         return {
-    notes: [
-      { text: 'This patient is consectetur adipiscing elit. Cras eleifend.', edit: false },
-      { text: 'X-ray ipsum dolor sit amet, consectetur adipiscing elit. Cras eleifend.', edit: false },
-      { text: 'Sed eu lacus sed justo elementum scelerisque lacus.', edit: false }
-    ],
-    editedNote: null,
-    message: 'Hello Vue.js!',
-    recentTreatments: [{
-                patient: [
-                    {date: 'DD/MM/YYYY'},
-                    {treatment: 'Cleaning'},
-                    {dentist: 'Dr. Ztrange'},
-                    {nurse: 'Ms. Enola'}
-                ],  
-                },
-                {
-                patient: [
-                    {date: 'DD/MM/YYYY'},
-                    {treatment: 'Cleaning'},
-                    {dentist: 'Dr. Ztrange'},
-                    {nurse: 'Ms. Enola'}
-                ],  
-                }
+            props: ["id"],
+            patient: [],
+            notes: [
+            { text: 'This patient is consectetur adipiscing elit. Cras eleifend.', edit: false },
+            { text: 'X-ray ipsum dolor sit amet, consectetur adipiscing elit. Cras eleifend.', edit: false },
+            { text: 'Sed eu lacus sed justo elementum scelerisque lacus.', edit: false }
+            ],
+            editedNote: null,
+            message: 'Hello Vue.js!',
+            recentTreatments: [{
+            patient: [
+                {date: 'DD/MM/YYYY'},
+                {treatment: 'Cleaning'},
+                {dentist: 'Dr. Ztrange'},
+                {nurse: 'Ms. Enola'}
+            ],  
+            },
+            {
+            patient: [
+                {date: 'DD/MM/YYYY'},
+                {treatment: 'Cleaning'},
+                {dentist: 'Dr. Ztrange'},
+                {nurse: 'Ms. Enola'}
+            ],  
+            }
             ],
     }},
     methods: {
@@ -249,6 +253,14 @@ export default {
         inserted (el) {
             el.focus()
         }
+        }
+    },
+    async mounted() {
+    this.patient = await api.getpatient(this.$route.params.id);
+    },
+    filters: {
+        formatDate(date){
+            return moment(String(date)).format('DD/MM/YYYY')
         }
     }
 }
