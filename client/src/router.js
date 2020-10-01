@@ -23,22 +23,22 @@ export default new Router({
         {
           path: '/calendar',
           name: 'calendar',
-          component: () => import(/* webpackChunkName: "demo" */ './views/Icons.vue')
+          component: () => import(/* webpackChunkName: "demo" */ './views/Calendar.vue')
         },
         {
           path: '/patient-list',
           name: 'patient-list',
-          component: () => import(/* webpackChunkName: "demo" */ './views/UserProfile.vue')
+          component: () => import(/* webpackChunkName: "demo" */ './views/PatientList.vue')
         },
         {
           path: '/payment-info',
           name: 'payment-info',
-          component: () => import(/* webpackChunkName: "demo" */ './views/Maps.vue')
+          component: () => import(/* webpackChunkName: "demo" */ './views/PaymentInfo.vue')
         },
         {
           path: '/settings',
           name: 'settings',
-          component: () => import(/* webpackChunkName: "demo" */ './views/Tables.vue')
+          component: () => import(/* webpackChunkName: "demo" */ './views/Setting.vue')
         }
       ]
     },
