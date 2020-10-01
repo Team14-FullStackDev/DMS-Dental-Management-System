@@ -1,8 +1,9 @@
 import Vue from 'vue'
-import Router from 'vue-router'
+import Router from 'vue-router';
 import DashboardLayout from '@/layout/DashboardLayout'
 import AuthLayout from '@/layout/AuthLayout'
-Vue.use(Router)
+
+Vue.use(Router);
 
 export default new Router({
   linkExactActiveClass: 'active',
@@ -18,7 +19,7 @@ export default new Router({
           // route level code-splitting
           // this generates a separate chunk (about.[hash].js) for this route
           // which is lazy-loaded when the route is visited.
-          component: () => import(/* webpackChunkName: "demo" */ './views/Dashboard.vue')
+          component: () => import(/* webpackChunkName: "demo" */ './views/Overview.vue')
         },
         {
           path: '/calendar',
@@ -27,19 +28,25 @@ export default new Router({
         },
         {
           path: '/patient-list',
-          name: 'patient-list',
+          name: 'patient list',
           component: () => import(/* webpackChunkName: "demo" */ './views/PatientList.vue')
         },
         {
           path: '/payment-info',
-          name: 'payment-info',
+          name: 'paymentinformation',
           component: () => import(/* webpackChunkName: "demo" */ './views/PaymentInfo.vue')
         },
         {
           path: '/settings',
           name: 'settings',
           component: () => import(/* webpackChunkName: "demo" */ './views/Setting.vue')
-        }
+        },
+        {
+          path: '/patient-list/:id/info',
+          name: 'patient-info',
+          component: () => import(/* webpackChunkName: "demo" */ './views/PatientList/PatientInfo.vue'),
+          props: true
+        },
       ]
     },
     {
@@ -58,6 +65,21 @@ export default new Router({
           component: () => import(/* webpackChunkName: "demo" */ './views/Register.vue')
         }
       ]
+    },
+    {    
+      path: '/',
+        redirect: '/patients'
+      }, 
+      {
+        path: '/patients/AddPatient',
+        name: 'post-patient',
+        component: () => import(/* webpackChunkName: "demo" */ './components/PatientInfo/AddPatient.vue')
+      },
+      {
+        path: '/patients/:id/EditPatient',
+        name: 'EditPatient',
+        component: () => import(/* webpackChunkName: "demo" */ './views/PatientList/EditPatient.vue')
+      }
+    ]
     }
-  ]
-})
+);
