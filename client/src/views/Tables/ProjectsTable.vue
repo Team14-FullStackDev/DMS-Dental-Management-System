@@ -9,9 +9,6 @@
             {{title}}
           </h3>
         </div>
-        <div class="col text-right">
-          <base-button type="primary" size="sm">See all</base-button>
-        </div>
       </div>
     </div>
 
@@ -22,11 +19,11 @@
                   tbody-classes="list"
                   :data="tableData">
         <template slot="columns">
-          <th>Project</th>
-          <th>Budget</th>
-          <th>Status</th>
-          <th>Users</th>
-          <th>Completion</th>
+          <th>Basic info</th>
+          <th>Phone number</th>
+          <th>Next Appointment</th>
+          <th>Last Appointment</th>
+          <th>Register Date</th>
           <th></th>
         </template>
 
@@ -37,7 +34,7 @@
                 <img alt="Image placeholder" :src="row.img">
               </a>
               <div class="media-body">
-                <span class="name mb-0 text-sm">{{row.title}}</span>
+                <a class="name mb-0 text-sm" href="#/patientinfo">{{row.title}}</a>
               </div>
             </div>
           </th>
@@ -45,38 +42,14 @@
             {{row.budget}}
           </td>
           <td>
-            <badge class="badge-dot mr-4" :type="row.statusType">
-              <i :class="`bg-${row.statusType}`"></i>
-              <span class="status">{{row.status}}</span>
-            </badge>
+            {{row.status}}
           </td>
           <td>
-            <div class="avatar-group">
-              <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="Ryan Tompson">
-                <img alt="Image placeholder" src="img/theme/team-1-800x800.jpg">
-              </a>
-              <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="Romina Hadid">
-                <img alt="Image placeholder" src="img/theme/team-2-800x800.jpg">
-              </a>
-              <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="Alexander Smith">
-                <img alt="Image placeholder" src="img/theme/team-3-800x800.jpg">
-              </a>
-              <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="Jessica Doe">
-                <img alt="Image placeholder" src="img/theme/team-4-800x800.jpg">
-              </a>
-            </div>
+            {{row.lastappointment}}
           </td>
 
           <td>
-            <div class="d-flex align-items-center">
-              <span class="completion mr-2">{{row.completion}}%</span>
-              <div>
-                <base-progress :type="row.statusType"
-                               :show-percentage="false"
-                               class="pt-0"
-                               :value="row.completion"/>
-              </div>
-            </div>
+            {{row.status}}
           </td>
 
           <td class="text-right">
@@ -120,42 +93,42 @@
         tableData: [
           {
             img: 'img/theme/bootstrap.jpg',
-            title: 'Argon Design System',
-            budget: '$2500 USD',
-            status: 'pending',
-            statusType: 'warning',
+            title: 'Pich Sokmeng',
+            budget: '012 123 123',
+            status: 'DD/MM/YYYY',
+            lastappointment: 'DD/MM/YYYY',
             completion: 60
           },
           {
             img: 'img/theme/angular.jpg',
-            title: 'Angular Now UI Kit PRO',
-            budget: '$1800 USD',
-            status: 'completed',
-            statusType: 'success',
+            title: 'Pong Channy',
+            budget: '012 123 123',
+            status: 'DD/MM/YYYY',
+            lastappointment: 'DD/MM/YYYY',
             completion: 100
           },
           {
             img: 'img/theme/sketch.jpg',
-            title: 'Black Dashboard',
-            budget: '$3150 USD',
-            status: 'delayed',
-            statusType: 'danger',
+            title: 'Sann Chamrouen',
+            budget: '012 123 123',
+            status: 'DD/MM/YYYY',
+            lastappointment: 'DD/MM/YYYY',
             completion: 72
           },
           {
             img: 'img/theme/react.jpg',
-            title: 'React Material Dashboard',
-            budget: '$4400 USD',
-            status: 'on schedule',
-            statusType: 'info',
+            title: 'Kaing Sokheng',
+            budget: '012 123 123',
+            status: 'DD/MM/YYYY',
+            lastappointment: 'DD/MM/YYYY',
             completion: 90
           },
           {
             img: 'img/theme/vue.jpg',
-            title: 'Vue Paper UI Kit PRO',
-            budget: '$2200 USD',
-            status: 'completed',
-            statusType: 'success',
+            title: 'Daro Dayla',
+            budget: '012 123 123',
+            status: 'DD/MM/YYYY',
+            lastappointment: 'DD/MM/YYYY',
             completion: 100
           }
         ]
