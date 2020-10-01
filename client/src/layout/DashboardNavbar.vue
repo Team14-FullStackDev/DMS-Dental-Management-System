@@ -1,4 +1,5 @@
 <template>
+
     <base-nav class="navbar-top navbar-dark"
               id="navbar-main"
               :show-toggle-button="false"
@@ -11,17 +12,27 @@
                             addon-right-icon="fas fa-search">
                 </base-input>
             </div>
-        </form>
-        
+        </form>   
+        <div class="col-mb">
+          
+          <post-record></post-record>
+          </div>
     </base-nav>
 </template>
 <script>
-  export default {
+
+import PostRecord from '@/components/PostRecord.vue';
+
+export default {
+    components: {
+      PostRecord
+    },
     data() {
       return {
         activeNotifications: false,
         showMenu: false,
-        searchQuery: ''
+        searchQuery: '',
+       
       };
     },
     methods: {
@@ -33,6 +44,9 @@
       },
       toggleMenu() {
         this.showMenu = !this.showMenu;
+      },
+      addTreatmentList(t) {
+        this.addedTreatments.push(t);
       }
     }
   };

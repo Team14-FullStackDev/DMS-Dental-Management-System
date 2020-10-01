@@ -18,27 +18,32 @@ export default new Router({
           // route level code-splitting
           // this generates a separate chunk (about.[hash].js) for this route
           // which is lazy-loaded when the route is visited.
-          component: () => import(/* webpackChunkName: "demo" */ './views/Dashboard.vue')
+          component: () => import(/* webpackChunkName: "demo" */ './views/Overview.vue')
         },
         {
           path: '/calendar',
           name: 'calendar',
-          component: () => import(/* webpackChunkName: "demo" */ './views/Icons.vue')
+          component: () => import(/* webpackChunkName: "demo" */ './views/Calendar.vue')
         },
         {
           path: '/patient-list',
-          name: 'patient-list',
-          component: () => import(/* webpackChunkName: "demo" */ './views/UserProfile.vue')
+          name: 'patient list',
+          component: () => import(/* webpackChunkName: "demo" */ './views/PatientList.vue')
         },
         {
           path: '/payment-info',
-          name: 'payment-info',
-          component: () => import(/* webpackChunkName: "demo" */ './views/Maps.vue')
+          name: 'payment information',
+          component: () => import(/* webpackChunkName: "demo" */ './views/PaymentInfo.vue')
         },
         {
           path: '/settings',
           name: 'settings',
           component: () => import(/* webpackChunkName: "demo" */ './views/Tables.vue')
+        },
+        {
+          path: '/patientinfo',
+          name: 'patientinfo',
+          component: () => import(/* webpackChunkName: "demo" */ './views/PatientList/PatientInfo.vue')
         }
       ]
     },
