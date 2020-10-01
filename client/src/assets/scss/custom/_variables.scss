@@ -99,7 +99,7 @@ $colors: map-merge((
 ), $colors);
 
 $default:       #172b4d !default;
-$primary:       #5e72e4 !default;
+$primary:       #6EB5FF !default;
 $secondary:     #f7fafc !default;
 $success:       $green !default;
 $info:          $teal !default;
@@ -150,7 +150,7 @@ $brand-colors: map-merge((
 $shape-colors: () !default;
 $shape-colors: map-merge((
   "default":      #32325d,
-  "primary":      #5533ff,
+  "primary":      #6EB5FF,
   "secondary":    #24b47e,
   "neutral":      #e9ecef,
   "blue-gray":    #b2cbe1,

@@ -1,5 +1,4 @@
 <template>
-
     <base-nav class="navbar-top navbar-dark"
               id="navbar-main"
               :show-toggle-button="false"
@@ -11,27 +10,19 @@
                             alternative=""
                             addon-right-icon="fas fa-search">
                 </base-input>
+                
             </div>
-        </form>   
-        <div class="col-mb">
-          <post-patient></post-patient>
-          </div>
+        </form>
+        
     </base-nav>
 </template>
 <script>
-
-import PostPatient from '@/components/PatientInfo/PostPatient'
-
-export default {
-    components: {
-    PostPatient
-    },
+  export default {
     data() {
       return {
         activeNotifications: false,
         showMenu: false,
-        searchQuery: '',
-       
+        searchQuery: ''
       };
     },
     methods: {
@@ -43,9 +34,6 @@ export default {
       },
       toggleMenu() {
         this.showMenu = !this.showMenu;
-      },
-      addTreatmentList(t) {
-        this.addedTreatments.push(t);
       }
     }
   };
