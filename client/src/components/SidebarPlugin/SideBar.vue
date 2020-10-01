@@ -110,8 +110,8 @@
              <!-- user -->
         <div>
             <ul class="navbar-nav">
-            <li class="nav-item dropup ml-3">
-                <base-dropdown class="nav-link pr-2">
+            <li class="nav-item dropdown">
+                <base-dropdown class="nav-link pr-0">
                     <div class="media align-items-center" slot="title">
                 <span class="avatar avatar-sm rounded-circle">
                   <img alt="Image placeholder" src="img/theme/team-4-800x800.jpg">
