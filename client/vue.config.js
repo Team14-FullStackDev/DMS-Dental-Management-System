@@ -4,6 +4,10 @@ const path = require('path');
 
 
 module.exports = {
+  publicPath: process.env.NODE_ENV === 'production'
+  ? '/client/'
+  : '/',
+  
   configureWebpack: {
     // Set up all the aliases we use in our app.
     plugins: [

@@ -14,10 +14,10 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.11b70b028eed1910eb81d80fbcc5d5a4.js"
+  "/client/precache-manifest.b2c00f9b2b81bcf1e984984ce61fb637.js"
 );
 
-workbox.core.setCacheNameDetails({prefix: "vue-argon-dashboard"});
+workbox.core.setCacheNameDetails({prefix: "dms-dashboard"});
 
 self.addEventListener('message', (event) => {
   if (event.data && event.data.type === 'SKIP_WAITING') {
