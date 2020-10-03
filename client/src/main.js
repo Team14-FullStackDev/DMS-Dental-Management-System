@@ -23,6 +23,9 @@ import ArgonDashboard from './plugins/argon-dashboard'
 import store from "./store/store"
 import modal from 'vue-js-modal'
 
+// bus handle event
+export const bus = new Vue();
+
 Vue.config.productionTip = false
 Vue.use(modal, {dialog: true, dynamic: true})
 

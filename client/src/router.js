@@ -18,7 +18,7 @@ export default new Router({
           // route level code-splitting
           // this generates a separate chunk (about.[hash].js) for this route
           // which is lazy-loaded when the route is visited.
-          component: () => import(/* webpackChunkName: "demo" */ './views/Dashboard.vue')
+          component: () => import(/* webpackChunkName: "demo" */ './views/Overview.vue')
         },
         {
           path: '/calendar',
@@ -29,6 +29,12 @@ export default new Router({
           path: '/patient-list',
           name: 'patient-list',
           component: () => import(/* webpackChunkName: "demo" */ './views/PatientList.vue')
+        },
+        {
+          path: '/patient/:patientId/info',
+          name: 'patient-info',
+          component: () => import(/* webpackChunkName: "demo" */ './views/PatientList/PatientInfo.vue'),
+          props: true,
         },
         {
           path: '/payment-info',

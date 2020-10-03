@@ -66,7 +66,7 @@
 </template>
 
 <script>
-// import { EventBus } from '@/helpers/event-bus.js';
+import { bus } from '@/main'
 import { api } from '@/helpers/helpers';
 
 export default {
@@ -108,9 +108,9 @@ export default {
       //   console.log(this.patient)
       //   EventBus.$emit('createOrUpdate', this.patient);
       // }
-      const res = await api.addpatient(this.patient);
+      await api.addpatient(this.patient);
       this.flash('patient added', 'success');
-      alert('Added', res.patient.patient_name);
+       bus.$emit('patientAdded', this.patient);
       
     }
   },

@@ -129,12 +129,12 @@
                                                     
                                                     v-if="note.edit"
                                                     v-model="note.title"
-                                                    @blur="note.edit = false; $emit('update')"
+                                                    @blur="blurField"
                                                     @keyup.enter="note.edit=false; $emit('update')"
-                                                    v-focus
+                                                    @focus="focusField('note.text')"
                                                 >
                                                 <div v-else>
-                                                    <label @dblclick="note.edit = true;"> {{note.text}} </label>
+                                                    <label @click="note.edit = true;"> {{note.text}} </label>
                                                 </div>
                                                 
                                             </li>
@@ -192,7 +192,7 @@
                                                     v-focus
                                                 >
                                                 <div v-else>
-                                                    <label @click="note.edit = true;"> {{note.text}} </label>
+                                                    <label @click="note.edit = true"> {{note.text}} </label>
                                                 </div>
                                                 
                                             </li>
@@ -224,6 +224,7 @@ export default {
             { text: 'Sed eu lacus sed justo elementum scelerisque lacus.', edit: false }
             ],
             editedNote: null,
+
             message: 'Hello Vue.js!',
             recentTreatments: [{
             patient: [
@@ -246,15 +247,15 @@ export default {
     methods: {
     editNote: function (note) {
       this.editedNote = note
-        }
+        },
+    blurField(){
+        this.editedNote = '';
     },
-    directives: {
-        focus: {
-        inserted (el) {
-            el.focus()
-        }
-        }
+    showField(note){
+        return(this.notes.text == '' || this.editedNote == note)
+    }
     },
+    
     async mounted() {
     this.patient = await api.getpatient(this.$route.params.id);
     },
@@ -262,7 +263,14 @@ export default {
         formatDate(date){
             return moment(String(date)).format('DD/MM/YYYY')
         }
+    },
+    directives: {
+    focus: {
+      inserted (el) {
+        el.focus()
+      }
     }
+  }
 }
 </script>
 

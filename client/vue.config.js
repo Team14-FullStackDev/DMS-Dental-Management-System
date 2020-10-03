@@ -1,5 +1,7 @@
 const webpack = require('webpack');
 const isProd = process.env.NODE_ENV === "production";
+const path = require('path');
+
 
 module.exports = {
   configureWebpack: {
@@ -20,5 +22,13 @@ module.exports = {
   css: {
     // Enable CSS source maps.
     sourceMap: process.env.NODE_ENV !== 'production'
+  },
+  outputDir: path.resolve(__dirname, '../Server/public'),
+  devServer: {
+    proxy: {
+      '/patients': {
+        target: 'http://localhost:3000'
+      }
+    }
   }
 };

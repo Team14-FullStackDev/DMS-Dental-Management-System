@@ -10,12 +10,6 @@ const { success, error } = require("consola");
 // Bring in the app constants
 const { DB, PORT } = require("./config");
 
-
-
-
-
-
-
 require("./middlewares/passport")(passport);
 
 global.Record = require('./models/patientModel');
@@ -44,6 +38,14 @@ app.listen(port);
 app.use((req, res) => {
   res.status(404).send({ url: `${req.originalUrl} not found` });
 });
+
+if (process.env.NODE_ENV === 'production'){
+  // Static folder
+  app.use(express.static(__dirname + '/public/'))
+
+  //Handle SPA
+  app.get(/.*/, (req, res) => res.sendFile(__dirname + '/public/index.html'));
+}
 
 console.log(`Server started on port ${port}`);
 
