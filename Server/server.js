@@ -7,6 +7,7 @@ const { connect } = require("mongoose");
 const { success, error } = require("consola");
 
 
+
 // Bring in the app constants
 const { DB, PORT } = require("./config");
 
