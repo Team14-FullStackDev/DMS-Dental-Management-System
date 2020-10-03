@@ -27,7 +27,7 @@ module.exports = {
     // Enable CSS source maps.
     sourceMap: process.env.NODE_ENV !== 'production'
   },
-  outputDir: path.resolve(__dirname, '../Server/public'),
+  outputDir: path.resolve(__dirname, '../server/public'),
   devServer: {
     proxy: {
       '/patients': {
