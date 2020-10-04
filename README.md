@@ -1,13 +1,9 @@
-# dentist_server_api
+# :fire::sparkles: DMS-Dental-Management-System :sparkles::fire:
+Dental management system to help dentists keep records of their customers, appointments, payments history, etc.
 
-
-## installation server side
-
-#### npm init
-Create package.json file
-
-#### npm install express mongoose cors body-parser passport-jwt passport bcryptjs consola dotenv jsonwebtoken
-Install package plugin to use in project
-
-#### npm i -D nodemon
-Install nodemon refresh reload when server running in localhost
+# design file
+https://www.figma.com/file/KZ7tBkKqVAVJfbgYf8EDPx/UI-Designer
+# front end
+vue bootstrap argondash board template with axios
+# back end
+nodejs app with express
