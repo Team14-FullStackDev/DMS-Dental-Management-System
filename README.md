@@ -7,3 +7,14 @@ https://www.figma.com/file/KZ7tBkKqVAVJfbgYf8EDPx/UI-Designer
 vue bootstrap argondash board template with axios
 # back end
 nodejs app with express
+
+## Build Setup
+
+``` bash
+# install dependencies
+npm install
+
+# serve with hot reload at localhost:8080
+npm run serve
+
+```
