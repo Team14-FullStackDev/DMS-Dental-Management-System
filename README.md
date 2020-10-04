@@ -18,3 +18,6 @@ npm install
 npm run serve
 
 ```
+## License
+
+DMS is licensed under the [GNU Affero General Public License v3.0](LICENSE).
