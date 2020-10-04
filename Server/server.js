@@ -36,9 +36,9 @@ app.use(bodyParser.json());
 routes(app);
 app.listen(port);
 
-app.use((req, res) => {
-  res.status(404).send({ url: `${req.originalUrl} not found` });
-});
+// app.use((req, res) => {
+//   res.status(404).send({ url: `${req.originalUrl} not found` });
+// });
 
 if (process.env.NODE_ENV === 'production'){
   // Static folder
