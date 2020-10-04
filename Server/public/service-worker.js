@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/client/precache-manifest.b2c00f9b2b81bcf1e984984ce61fb637.js"
+  "/precache-manifest.b1a98348c8835450bfae4cc0e94a4e02.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "dms-dashboard"});
