@@ -9,9 +9,9 @@ const { success, error } = require("consola");
 
 
 // Bring in the app constants
-const { DB, PORT } = require("./config");
+// const { DB, PORT } = require("./config");
 
-require("./middlewares/passport")(passport);
+// require("./middlewares/passport")(passport);
 
 global.Record = require('./models/patientModel');
 const routes = require('./routes/patientRoutes');
@@ -19,7 +19,7 @@ const routes = require('./routes/patientRoutes');
 mongoose.Promise = global.Promise;
 mongoose.set('useFindAndModify', false);
 mongoose.connect(
-  DB,
+  "mongodb+srv://zevo:1234@vuthyclouddb.4uehv.mongodb.net/Dentist?retryWrites=true&w=majority}",
   { useNewUrlParser: true }
 );
 
